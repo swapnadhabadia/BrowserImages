@@ -17,8 +17,6 @@ public class BaseApplication extends Application {
     // FOR IMAGE LOADER
     private static final long MAX_SIZE = 1000000L;//1 MB
 
-    public static int GENERAL_TRACKER = 0;
-
    private static ImageLoader imageLoader;
 
 
