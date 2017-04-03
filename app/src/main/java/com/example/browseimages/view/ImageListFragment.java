@@ -1,5 +1,6 @@
 package com.example.browseimages.view;
 
+import android.app.ProgressDialog;
 import
         android.content.Context;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ public class ImageListFragment extends Fragment implements ListMainInterface, Ad
 @BindView(R.id.listView)
     ListView listViewOfImages;
     private List<Hit> imageListModel;
+    private ProgressDialog mProgressDialog;
 
     public static Fragment newInstance(String s) {
         ImageListFragment fragment = new ImageListFragment();
@@ -47,6 +49,7 @@ public class ImageListFragment extends Fragment implements ListMainInterface, Ad
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mProgressDialog = new ProgressDialog(getActivity());
         if (getArguments() != null) {
             searchString = getArguments().getString("PRODUCT_NAME");
             Log.i(TAG, "onCreateView:  String : " + searchString);
@@ -86,6 +89,23 @@ public class ImageListFragment extends Fragment implements ListMainInterface, Ad
     @Override
     public void setDisplayMessage() {
         Toast.makeText(getContext(), R.string.no_result, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showProgressDialog(String message, boolean indeterminate, boolean isCancelable) {
+        if (mProgressDialog != null) {
+            mProgressDialog.setIndeterminate(indeterminate);
+            mProgressDialog.setMessage(message);
+            mProgressDialog.setCancelable(isCancelable);
+            mProgressDialog.show();
+        }
+    }
+
+    @Override
+    public void cancelProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
     }
 
     @Override

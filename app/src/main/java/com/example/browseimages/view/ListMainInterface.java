@@ -10,4 +10,8 @@ public interface ListMainInterface {
     void setListImages(Context context, List<Hit> hits);
 
     void setDisplayMessage();
+
+    void showProgressDialog(String message, boolean indeterminate, boolean isCancelable);
+
+    void cancelProgressDialog();
 }

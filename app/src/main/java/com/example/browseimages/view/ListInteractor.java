@@ -32,6 +32,9 @@ public class ListInteractor {
 
         try {
             if (Connectivity.isConnected(context)) {
+
+                presenterFragment.showProgressDialog(context.getString(R.string.loading), true, false);
+
                 final APIRequest.Builder<ImageListMainModel> builder = new APIRequest.Builder<>(context, Request.Method.GET,
                         ImageListMainModel.class, URLConstants.BASE_URL+searchString+"&image_type=photo",
                         new Response.Listener<ImageListMainModel>() {
@@ -41,6 +44,7 @@ public class ListInteractor {
 
                                 if(response !=null)
                                 {
+                                    presenterFragment.cancelProgressDialog();
                                     if(response.hits.size()>0)
                                     {
                                         presenterFragment.setListImages(context,response.hits);
@@ -59,6 +63,7 @@ public class ListInteractor {
                         }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        presenterFragment.cancelProgressDialog();
                         //presenterFragment.hideProgressDialog();
                         if (error.networkResponse == null) {
                             Log.i(TAG, "run: fail  " + error.getMessage());

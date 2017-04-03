@@ -27,4 +27,12 @@ public class ListPresenter {
     public void setDisplayMessage() {
         listFragmentInterface.setDisplayMessage();
     }
+
+    public void showProgressDialog(String message, boolean indeterminate, boolean isCancelable) {
+        listFragmentInterface.showProgressDialog(message, indeterminate, isCancelable);
+    }
+
+    public void cancelProgressDialog() {
+        listFragmentInterface.cancelProgressDialog();
+    }
 }
