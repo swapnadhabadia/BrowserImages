@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.browseimages.adapter.ListImagesAdapter;
 
@@ -80,6 +81,11 @@ public class ImageListFragment extends Fragment implements ListMainInterface, Ad
         ListImagesAdapter listImagesBaseAdapter = new ListImagesAdapter(getActivity(), hits);
         listViewOfImages.setAdapter(listImagesBaseAdapter);
         listViewOfImages.setOnItemClickListener(this);
+    }
+
+    @Override
+    public void setDisplayMessage() {
+        Toast.makeText(getContext(), R.string.no_result, Toast.LENGTH_LONG).show();
     }
 
     @Override

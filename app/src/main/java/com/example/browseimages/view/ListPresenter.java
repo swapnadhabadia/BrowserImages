@@ -23,4 +23,8 @@ public class ListPresenter {
     public void setListImages(Context context, List<Hit> hits) {
         listFragmentInterface.setListImages(context,hits);
     }
+
+    public void setDisplayMessage() {
+        listFragmentInterface.setDisplayMessage();
+    }
 }

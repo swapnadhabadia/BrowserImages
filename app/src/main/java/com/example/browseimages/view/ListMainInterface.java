@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface ListMainInterface {
     void setListImages(Context context, List<Hit> hits);
+
+    void setDisplayMessage();
 }
