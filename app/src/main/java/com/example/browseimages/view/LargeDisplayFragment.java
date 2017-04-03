@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import com.example.browseimages.BaseApplication;
 import com.example.browseimages.R;
+import com.example.browseimages.utils.Constants;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import butterknife.BindView;
@@ -29,7 +30,7 @@ public class LargeDisplayFragment extends Fragment{
     public static Fragment newInstance(String webformatURL) {
         LargeDisplayFragment fragment = new LargeDisplayFragment();
         Bundle args = new Bundle();
-        args.putString("PRODUCT", webformatURL);
+        args.putString(Constants.AppConstants.IMAGE, webformatURL);
         fragment.setArguments(args);
         return fragment;
     }
@@ -39,7 +40,7 @@ public class LargeDisplayFragment extends Fragment{
         super.onCreate(savedInstanceState);
         imageLoader = BaseApplication.getImageLoader();
         if (getArguments() != null) {
-            webformatURL = getArguments().getString("PRODUCT");
+            webformatURL = getArguments().getString(Constants.AppConstants.IMAGE);
             Log.i(TAG, "onCreateView:  String : " + webformatURL);
 
         }

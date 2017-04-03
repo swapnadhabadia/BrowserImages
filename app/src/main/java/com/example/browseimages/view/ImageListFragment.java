@@ -20,6 +20,7 @@ import com.example.browseimages.adapter.ListImagesAdapter;
 import com.example.browseimages.R;
 import com.example.browseimages.model.Hit;
 import com.example.browseimages.networking.Connectivity;
+import com.example.browseimages.utils.Constants;
 
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class ImageListFragment extends Fragment implements ListMainInterface, Ad
     public static Fragment newInstance(String s) {
         ImageListFragment fragment = new ImageListFragment();
         Bundle args = new Bundle();
-        args.putString("PRODUCT_NAME", s);
+        args.putString(Constants.AppConstants.IMAGE_NAME, s);
         fragment.setArguments(args);
         return fragment;
     }
@@ -51,7 +52,7 @@ public class ImageListFragment extends Fragment implements ListMainInterface, Ad
         super.onCreate(savedInstanceState);
         mProgressDialog = new ProgressDialog(getActivity());
         if (getArguments() != null) {
-            searchString = getArguments().getString("PRODUCT_NAME");
+            searchString = getArguments().getString(Constants.AppConstants.IMAGE_NAME);
             Log.i(TAG, "onCreateView:  String : " + searchString);
 
         }
