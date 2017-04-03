@@ -31,7 +31,7 @@ public class ImageListFragment extends Fragment implements ListMainInterface, Ad
      View root;
     private String searchString;
     private ListPresenter presenterFragment;
-@BindView(R.id.listview)
+@BindView(R.id.listView)
     ListView listViewOfImages;
     private List<Hit> imageListModel;
 

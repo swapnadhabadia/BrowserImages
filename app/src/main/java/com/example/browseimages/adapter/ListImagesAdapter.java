@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.browseimages.BaseApplication;
 import com.example.browseimages.R;
@@ -56,6 +57,7 @@ public class ListImagesAdapter extends BaseAdapter {
             holder = new ViewHolder();
 
             holder.listOfImage = (ImageView) convertView.findViewById(R.id.listOfImage);
+holder.imageName=(TextView)convertView.findViewById(R.id.imgName);
             convertView.setTag(holder);
         }
         else {
@@ -64,12 +66,13 @@ public class ListImagesAdapter extends BaseAdapter {
 
         Hit imgItem = imageList.get(position);
         imageLoader.displayImage(imgItem.previewURL,holder.listOfImage);
-
+        holder.imageName.setText(imgItem.tags.toString());
         return convertView;
     }
 
     private class ViewHolder {
         ImageView listOfImage;
 
+        TextView imageName;
     }
 }
