@@ -1,0 +1,65 @@
+package com.example.browseimages.view;
+
+import android.content.Context;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.example.browseimages.model.ImageListMainModel;
+import com.example.browseimages.networking.APIRequest;
+import com.example.browseimages.networking.Connectivity;
+import com.example.browseimages.networking.VolleyUtil;
+import com.example.browseimages.utils.URLConstants;
+
+
+public class ListInteractor {
+    private ListPresenter presenterFragment;
+
+    public ListInteractor(Context context, ListPresenter presenterFragment) {
+
+        this.presenterFragment=presenterFragment;
+    }
+
+    public void getListResponse(final Context context, String searchString) {
+
+
+        searchString.replaceAll(" ", "+").toLowerCase();
+
+        try {
+            if (Connectivity.isConnected(context)) {
+                final APIRequest.Builder<ImageListMainModel> builder = new APIRequest.Builder<>(context, Request.Method.GET,
+                        ImageListMainModel.class, URLConstants.BASE_URL+searchString+"&image_type=photo",
+                        new Response.Listener<ImageListMainModel>() {
+
+                            @Override
+                            public void onResponse(ImageListMainModel response) {
+
+                                if(response !=null)
+                                {
+                                    if(response.hits.size()>0)
+                                    {
+                                        presenterFragment.setListImages(context,response.hits);
+                                    }
+                                }
+
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //presenterFragment.hideProgressDialog();
+                        if (error.networkResponse == null) {
+
+                        }
+
+                    }
+                });
+                APIRequest request = builder.build();
+                VolleyUtil.getInstance(context).addToRequestQueue(request);
+            }
+        }
+        catch(Exception e)
+        {
+
+        }
+    }
+}
