@@ -57,7 +57,7 @@ public class ListImagesAdapter extends BaseAdapter {
             holder = new ViewHolder();
 
             holder.listOfImage = (ImageView) convertView.findViewById(R.id.listOfImage);
-holder.imageName=(TextView)convertView.findViewById(R.id.imgName);
+            holder.imageName=(TextView)convertView.findViewById(R.id.imgName);
             convertView.setTag(holder);
         }
         else {
